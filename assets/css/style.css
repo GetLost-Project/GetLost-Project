@@ -1,0 +1,79 @@
+body{
+	height: 100%;
+}
+#title{
+	font-family: 'Architects Daughter', cursive;
+}
+
+#map {
+    height: 400px;
+    width: 25%;
+}
+#error{
+	color: red;
+}
+#profile-box{
+height: 400px;
+position: sticky;
+top: 0px;
+z-index: 100;
+text-align: center;
+}
+#profile-picture img{
+	border-radius: 50%;
+}
+#body-content{
+	margin-top: 20px;
+}
+#first-page{
+	margin: auto;
+}
+#navigation{
+	margin-top: 40px;
+	margin-left: 20px;
+}
+#header{
+	width: auto;
+	margin-right: 0px;
+	margin-left: 0px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background-color: #37474f;
+	background-size: cover;
+	color: white;
+}
+#modal-entries{
+	margin-bottom: 10px;
+}
+#title{
+	margin-left: 15%;
+}
+#card{
+	background-color: #ffab40;
+	height: 450px;
+	margin-right: 20px;
+	margin-left: 10px;
+	border-style: solid;
+	border-width: 3px;
+	border-color: grey;
+	border-radius: 20px;
+	padding: 10px;
+}
+#thumbnail{
+	border-radius: 10px;
+}
+#favorite{
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+}
+#background{
+	background-image: url(../images/project-1-background.jpg);
+	background-size: cover;
+	position: sticky;
+	top: 0px;
+}
+#footer{
+	height: 20px;
+}
+/*TODO scrollspy on profile*/

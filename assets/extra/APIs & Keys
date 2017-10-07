@@ -1,0 +1,28 @@
+<!--Google Maps API-->
+ API:   <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+    </script>
+KEY: 	AIzaSyAmNX29rk_tbFqoDWIyYCg5TglI2OP8Xnk
+WEBSITE:	https://developers.google.com/maps/documentation/javascript/tutorial
+
+<!--Transit and Trails API-->
+API: http://www.transitandtrails.org/api
+KEY: 4577bbba52e87b5c5d0cb15d72a1f6835d7247bd619124ff4fbbe47d479898f3
+WEBSITE:
+
+<!--HIKNG PROJECT API-->
+API: <script src ="https://www.hikingproject.com/data/get-trails?lat=40.0274&lon=-105.2519&maxDistance=10&key=YOUR_KEY_HERE"></script>
+API2: <script scr="https://www.hikingproject.com/data/get-conditions?ids=7001635,7006663,7000108,7002742,7011516&key=YOUR_KEY_HERE"></script>
+KEY: 200161300-d760842c6aa8785c2fc55d5c8a01cc6a
+WEBSITE: https://www.hikingproject.com/data
+
+<!--Google Data Charts-->
+WEBSITE: https://developers.google.com/chart/
+
+<!--D3-->
+WEBSITE:
+
+<!--Active API-->
+Activity KEY: NWSY362C38RVRPTHWYVHPBWD
+Campground KEY: 9HMPQBB75S49UVWWAXYX64GJ
+WEBSITE: http://developer.active.com/apis
