@@ -64,8 +64,8 @@
                                 <label for="profile-image">Profile Picture</label>
                                 <input type="file" name="file" class="inputimg" id="profile-image" accept="image/*">
                             </div>
-                            <div id="error"></div>
                         </div>
+                        <div id="error"></div>
                     </div>
                     <button id="btnLogin" class="btn btn-action">Login</button>
                     <button id="btnSignUp" class="btn btn-secondary">Sign Up</button>
@@ -77,61 +77,78 @@
         </div>
     </div>
     </div>
-    <div class="row" id="background">
+    <div class="row" data-spy="scroll" data-target=".navbar" data-offset="50" id="background">
         <!--Profile-->
         <div class="container well col-lg-2 hide" id="profile-box">
             <div class="">
                 <h2 class="text-center">Your Profile</h2>
                 <div id="profile-picture"><img src="assets/images/project-1-default-user.png"></div>
                 <div id="profile-content">
-                    <h3 id=username></h3>
-                </div>
-            </div>
-        </div>
-        <div class="">
-            <!--Search-->
-            <div id="body-content" class="col-lg-10">
-                <div class="text-center">
-                    <div>
-                        <div id="first-page">
-                            <div>
-                                <div class="form-inline">
-                                    <input class="form-control" id="userSearch" type="search" placeholder="Search For Trails">
-                                    <input class="form-control" id="userDistance" type="search" placeholder="Distance">
-                                    <span class="form-group-btn">
-                                 <button class="form-control btn btn-default" id="btnSearch" type="button">Go!</button>
-                             </span>
-                                </div>
-                                <h2 id="nearYou">Trails Near You</h2>
-                                <h2 id="results" class="hide" >Search Results</h2>
-                                <div class="container">
-                                    <div class="row" id="search-display"></div>
-                                </div>
-                            </div>
+                    <h3 id=username class="text-center"></h3>
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <nav class="navbar navbar-inverse navbar-fixed-left">
+                                <ul class="nav navbar-nav">
+                                    <li><a href="#section1"><h4 id="searchScreen">Search</h4></a></li>
+                                    <li><a href="#section2"><h4 id="favoritesScreen">Favorites</h4></a></li>
+                                    <li><a href="#section3"><h4 id="statsScreen">Stats</h4></a></li>
+                                </ul>
+                            </nav>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div id="map"></div>
-        <div id="weather"></div>
-        <!--Profile Favorites/Stats-->
-        <div class="row">
-            <div class="col-lg-10">
-                <div id="second-page">
-                    <div id="favorites"></div>
+        <div class="body-content col-lg-10">
+            <!--Search-->
+            <div id="section1" class="container">
+                <div id="first-page">
+                    <div class="text-center">
+                        <div class="form-inline">
+                            <input class="form-control" id="userSearch" type="search" placeholder="Search For Trails">
+                            <input class="form-control" id="userDistance" type="search" placeholder="Distance">
+                            <span class="form-group-btn">
+                                 <button class="form-control btn btn-default" id="btnSearch" type="button">Go!</button>
+                             </span>
+                        </div>
+                        <h2 id="nearYou">Trails Near You</h2>
+                        <h2 id="results" class="hide">Search Results</h2>
+                        <div class="container">
+                            <div class="row" id="search-display"></div>
+                        </div>
+                    </div>
                 </div>
-                <div id="calender"></div>
-                <div id="history"></div>
-                <div id="stats"></div>
+            </div>
+            <!--Favorites-->
+            <div id="section2" class="container">
+                <div class="row">
+                    <div>
+                        <div id="second-page">
+                            <div id="favorites">
+                                <h1>Favorites</h1></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Stats-->
+            <div id="section3" class="container">
+                <div class="row">
+                    <div id="third-page">
+                        <div id="calender"></div>
+                        <div id="history"></div>
+                        <div id="stats">
+                            <h1>Stats</h1></div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="container" id="footer">
             <div class="row">
                 <div class="col-lg-12">
-                    <footer class="text-center">GetLost&copy;
+                    <div class="text-center">GetLost&copy;
                         <button id="test">test</button>
-                    </footer>
+                    </div>
                 </div>
             </div>
         </div>

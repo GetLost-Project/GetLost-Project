@@ -1,0 +1,15 @@
+Project Title: Trailfinders
+
+Team Members: Tamim Shohid, James Castanien, Scot Renz
+
+Project Description: Web app that finds and displays hiking trails, campsites, and local activities. Profile interface that allows login, saving favorites, and stat tracking.
+
+Sketch of Final Product: See paper
+
+APIs To Be Used: Google Maps, Hiking Project API, Active API, Wunderground or forecast.io, Google Images API,
+
+Rough Breakdown of Tasks: 	Tamim: Trail search API; populate page;
+							James: Rough HTML; weather api linked from Tamim's search criteria;
+							Scot: Profile/firebase side; populate profile, favorites, stats;
+
+Additional libraries: Google Data Charts,

@@ -3,6 +3,8 @@ body{
 }
 #title{
 	font-family: 'Architects Daughter', cursive;
+	font-size: 60px;
+	margin-left: 10%;
 }
 
 #map {
@@ -13,20 +15,35 @@ body{
 	color: red;
 }
 #profile-box{
-height: 400px;
+height: 600px;
 position: sticky;
 top: 0px;
 z-index: 100;
 text-align: center;
+background-color: #bdbdbd;
 }
 #profile-picture img{
 	border-radius: 50%;
+	height: 200px;
+	width: 200px;
+	border-style: solid;
+	border-width: 3px;
+	color: grey;
 }
-#body-content{
+.body-content{
 	margin-top: 20px;
 }
 #first-page{
-	margin: auto;
+	margin: auto;	
+}
+#section1{
+	height: auto;
+}
+#section2{
+	height: 600px;
+}
+#section3 {
+	height: 600px;
 }
 #navigation{
 	margin-top: 40px;
@@ -45,12 +62,10 @@ text-align: center;
 #modal-entries{
 	margin-bottom: 10px;
 }
-#title{
-	margin-left: 15%;
-}
+
 #card{
 	background-color: #ffab40;
-	height: 450px;
+	height: 600px;
 	margin-right: 20px;
 	margin-left: 10px;
 	border-style: solid;
@@ -62,7 +77,7 @@ text-align: center;
 #thumbnail{
 	border-radius: 10px;
 }
-#favorite{
+#favoriteBtn{
 	position: absolute;
 	bottom: 10px;
 	right: 10px;
@@ -75,5 +90,13 @@ text-align: center;
 }
 #footer{
 	height: 20px;
+	position: absolute;
+	bottom: 0;
+	text-align: center;
+}
+.trailInfo{
+	text-align: left;
+	margin-top: 2px;
+	margin-bottom: 2px;
 }
 /*TODO scrollspy on profile*/
