@@ -8,6 +8,8 @@ var config = {
 };
 firebase.initializeApp(config);
 
+var storageRef = firebase.storage().ref();
+
 var database = firebase.database();
 //Login/SignIn Elements
 var auth = firebase.auth();
@@ -56,31 +58,40 @@ btnSignUp.on("click", e => {
     btnSignUp.hide();
     btnLogin.hide();
 })
-//Sign Up Event
+
+
 btnSignUpEntry.on("click", e => {
-    //TODO: CHECK FOR REAL EMAIL
-    //TODO MAKE SURE BOTH FIELDS ARE VALID
     var email = txtEmail.val();
     var password = txtPassword.val();
     var displayName = txtDisplay.val().trim();
     var name = txtName.val();
     var location = txtLocation.val();
-    var profilePic = profileImage.val();
+
 
     auth = firebase.auth();
 
+
     var promise = auth.createUserWithEmailAndPassword(email, password).then(function(user) {
 
+        var profilePicPath = document.getElementById("profile-image").files[0]
+        var task = storageRef.child("images").put(profilePicPath);
+        task.on(firebase.storage.TaskEvent.STATE_CHANGED,
+            function(snapshot) { console.log("state " + snapshot.state) },
+            function(error) { console.log("error " + error) },
+            function() {
+                var profilePic = task.snapshot.downloadURL;
 
-        firebase.database().ref('users/userID: ' + user.uid).set({
-            displayName: displayName,
-            name: name,
-            location: location,
-            profilePic: profilePic
+                firebase.database().ref('users/userID: ' + user.uid).set({
+                    displayName: displayName,
+                    name: name,
+                    location: location,
+                    profilePic: profilePic
 
-        })
-    });
+                })
 
+            }
+        )
+    })
 
     promise.catch(e => $("#error").html(e.message));
 })
@@ -98,13 +109,15 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
         console.log("logged-in");
         loggedIn = true
         modalOpen.addClass("hide");
-        btnLogOut.removeClass("hide")
+        btnLogOut.removeClass("hide");
+        $("#results").addClass("hide");
         $("#nearYou").removeClass("hide");
+        $("#second-page").removeClass("hide");
         userId = firebase.auth().currentUser.uid
         return firebase.database().ref('users/userID: ' + userId).once('value').then(function(snapshot) {
+            console.log(snapshot.val())
             username = snapshot.val() && snapshot.val().displayName;
-            profilePic = snapshot.val().profilePic;
-            userLocation = snapshot.val().location;
+            userLocation = snapshot.val() && snapshot.val().location;
 
         }).then(function() {
             userSearch = userLocation
@@ -115,11 +128,12 @@ firebase.auth().onAuthStateChanged(firebaseUser => {
 
 
     } else {
-        console.log("not logged in")
-        loggedIn = false
-        btnLogOut.addClass("hide")
+        console.log("not logged in");
+        loggedIn = false;
+        btnLogOut.addClass("hide");
         modalOpen.removeClass("hide");
         $("#nearYou").addClass("hide");
+        $("#second-page").addClass("hide");
 
     }
 });
@@ -129,25 +143,14 @@ $("#test").on("click", function test() {
     console.log(userId)
     console.log(profilePic)
     console.log(userLocation)
-    $("#profile-picture").html("<img src='" + profilePic + "'>")
+
 })
 
 
 // Search event
 var userSearch;
 var userDistance = 100;
-//Google Maps API
-function initMap() {
-    var uluru = { lat: -25.363, lng: 131.044 };
-    var map = new google.maps.Map($("#map")[0], {
-        zoom: 4,
-        center: uluru
-    });
-    var marker = new google.maps.Marker({
-        position: uluru,
-        map: map
-    });
-};
+
 // Google Maps Geolocation AJAX
 function geoTrailWeatherAPI() {
     console.log(userSearch);
@@ -172,59 +175,98 @@ function geoTrailWeatherAPI() {
             console.log(response)
             for (var i = 0; i < response.trails.length; i++) {
                 //console.log(response.trails[i])
-                //TODO make variables for image, summary, difficulty, length, name, condition, location, accent
-                var lat = response.trails[i].latitude
-                var lon = response.trails[i].longitude
-                var imgSmall = response.trails[i].imgSqSmall
-                var trailName = response.trails[i].name
-                var trailSummary = response.trails[i].summary
+                //TODO make variables for condition, location,
+                var lat = response.trails[i].latitude;
+                var lon = response.trails[i].longitude;
+                var imgSmall = response.trails[i].imgSqSmall;
+                var trailWeb = response.trails[i].url;
+                var trailName = response.trails[i].name;
+                var trailSummary = response.trails[i].summary;
+                var trailLength = response.trails[i].length;
+                var trailAscent = response.trails[i].ascent;
+                var trailRating = response.trails[i].stars;
+                var trailDifficulty = response.trails[i].difficulty;
+                var trailLocation = response.trails[i].location;
+                if (trailDifficulty === "green") {
+                    trailDifficulty = "assets/images/green.svg"
+                }
+                if (trailDifficulty === "greenBlue") {
+                    trailDifficulty = "assets/images/greenBlue.svg"
+                }
+                if (trailDifficulty === "blue") {
+                    trailDifficulty = "assets/images/blue.svg"
+                }
+                if (trailDifficulty === "blueBlack") {
+                    trailDifficulty = "assets/images/blueBlack.svg"
+                }
+                if (trailDifficulty === "black") {
+                    trailDifficulty = "assets/images/black.svg"
+                }
+                if (trailDifficulty === "dblack") {
+                    trailDifficulty = "assets/images/dblack.svg"
+                }
+                console.log(trailLocation)
+                var currentTemp;
+                var weatherIcon;
 
                 var card = $("<div class='col-lg-2' id='card'>");
-                var a = $("<img id='thumbnail' src='" + imgSmall + "' alt='No Image'' height='150px' width='150px' border-radius='30px'>")
+                var a = $("<img id='thumbnail' src='" + imgSmall + "' alt='Please Upload a Photo <a href="+ trailWeb + ">HERE</a>' height='150px' width='150px' border-radius='30px'>")
                 var b = $("<div class='caption'>")
                 var c = $("<h3>" + trailName + "</h3>")
+                var c2 = $("<h5>" + trailLocation + "</h5>")
                 var d = $("<p>" + trailSummary + "</p>")
-                var e = $("<p><a href='#' id='favorite' role='button'><i class='fa fa-star-o' aria-hidden='true'></i></a></p>")
+                var e = $("<p class='trailInfo'>Length: " + trailLength + " miles</p>")
+                var f = $("<p class='trailInfo'>Ascent: " + trailAscent + " ft.</p>")
+                var g = $("<p class='trailInfo'>Rating: " + trailRating + "/5</p>")
+                var h = $("<p class='trailInfo'>Difficulty: <img src='" + trailDifficulty + "'width='20px' height='20px'></p>")
+                var x = $("<p class='trailInfo' id='currentTemp" + [i] + "'>Current Temp: </p>")
+                var y = $("<p class='trailInfo' id='weatherIcon" + [i] + "'>Current Weather: </p>")
+                var z = $("<p><a id='favoriteBtn' role='button'><i onclick='changeStar(this)' class='fa fa-star-o'></i></a></p>")
                 card.append(a);
                 card.append(b);
                 card.append(c);
+                card.append(c2);
                 card.append(d);
                 card.append(e);
+                card.append(f);
+                card.append(g);
+                card.append(h);
+                card.append(x);
+                card.append(y);
+                card.append(z);
+                //card.append(f);
 
-                $("#search-display").append(card)
+                $("#search-display").append(card);
+                
 
-                //WeatherUnderground API AJAX
-                function weather() {
-                    var weatherURL = "http://api.wunderground.com/api/5bb60ec58c2a2733/conditions/geolookup/q/" + lat + "," + lon + ".json"
-
-                    $.ajax({
-                        url: weatherURL,
-                        method: "GET"
-                    }).done(function(response) {
-                        //TODO make variables for temp, icon, 
-                        var currentTemp = response.current_observation.temp_f
-                        e = $("<p>" + currentTemp + "</p>")
-
-                        console.log(response)
-
-                    });
-                }
+                weather(lat, lon, i);
             }
-            //WeatherUnderground Radar API AJAX
-            var radarURL = "http://api.wunderground.com/api/5bb60ec58c2a2733/radar/image.gif?centerlat=38&centerlon=-96.4&radius=100&width=280&height=280&newmaps=1"
-            $.ajax({
-                url: radarURL,
-                method: "GET"
-            }).done(function(response) {
-                console.log(response)
-                //$("#weather").append(response)
-
-            })
 
         });
     });
 }
 
+
+function weather(lat, lon, i) {
+    var weatherURL = "http://api.wunderground.com/api/5bb60ec58c2a2733/conditions/geolookup/q/" + lat + "," + lon + ".json"
+
+    $.ajax({
+        url: weatherURL,
+        method: "GET"
+    }).done(function(response) {
+
+        console.log(response)
+        currentTemp = response.current_observation.temp_f;
+        weatherIcon = response.current_observation.icon_url;
+        $("#currentTemp" + [i]).append(currentTemp);
+        $("#weatherIcon" + [i]).append("<img src ='" + weatherIcon + "'>");
+        console.log(weatherIcon);
+
+    });
+}
+
+
+// Search Sent to APIs
 $("#btnSearch").on("click", function search() {
     $("#search-display").html("");
     userSearch = $("#userSearch").val();
@@ -234,10 +276,22 @@ $("#btnSearch").on("click", function search() {
     geoTrailWeatherAPI();
 
 });
-function userProfile(){
-    $("#profile-box").removeClass("hide")
-    $("#username").html("<h3>"+username+"</h3>")
-}
-//Append Results
 
-//Append Search
+function userProfile() {
+    $("#profile-box").removeClass("hide")
+    $("#username").html("<h3>" + username + "</h3>")
+    return database.ref('users/userID: ' + userId).once('value').then(function(snapshot) {
+        profilePic = snapshot.val().profilePic;
+        console.log()
+        $("#profile-picture").html("<img src='" + profilePic + "'>")
+        
+    })
+};
+
+function changeStar(favoriteStar) {
+    favoriteStar.classList.toggle("fa-star");
+    favoriteStar.classList.toggle("fa-star-o");
+}
+
+
+//TODO: Save favorites to profile, populate page with favorites, save data to profile show data on page, add social media

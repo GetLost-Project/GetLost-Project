@@ -1,31 +1,25 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-       #map {
-        height: 400px;
-        width: 100%;
-       }
-    </style>
-  </head>
-  <body>
-    <h3>My Google Maps Demo</h3>
-    <div id="map"></div>
-    <script>
-      function initMap() {
-        var uluru = {lat: -25.363, lng: 131.044};
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 4,
-          center: uluru
-        });
-        var marker = new google.maps.Marker({
-          position: uluru,
-          map: map
-        });
-      }
+
+<head>
+    <title></title>
+    <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <i onclick='dumb(this)' class='fa fa-heart-o'></i>
+    <i onclick="myFunction(this)" class="fa fa-thumbs-up"></i>
+    <script type="text/javascript">
+    function dumb(x) {
+        x.classList.toggle("fa-heart");
+        x.classList.toggle("fa-heart-o")
+    }
+    function myFunction(x) {
+    x.classList.toggle("fa-thumbs-down");
+}
     </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmNX29rk_tbFqoDWIyYCg5TglI2OP8Xnk&callback=initMap">
-    </script>
-  </body>
+    <script src="https://use.fontawesome.com/ef62b51349.js"></script>
+</body>
+
 </html>
