@@ -192,7 +192,7 @@ body {
     top: 0px;
     min-height: 800px;
     height: 100%;
-    width: auto;
+    width: 101.1%;
     padding-bottom: 50px;
 
 }
@@ -202,9 +202,9 @@ body {
     position: absolute;
     bottom: 0;
     text-align: center;
-    background-color: #37474f;
+    background-color: #2E2E2E;
     width: 100%;
-    color: white;
+    color: gray;
 }
 
 .trailInfo {
