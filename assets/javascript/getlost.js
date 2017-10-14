@@ -287,7 +287,7 @@ function geoTrailWeatherAPI() {
 
 //Weather API
 function weather(lat, lon, tempElem, weatherIconElem) {
-    var weatherURL = "http://api.wunderground.com/api/4a1ff17d8c148703/conditions/geolookup/q/" + lat + "," + lon + ".json"
+    var weatherURL = "https://api.wunderground.com/api/4a1ff17d8c148703/conditions/geolookup/q/" + lat + "," + lon + ".json"
 
     $.ajax({
         url: weatherURL,
