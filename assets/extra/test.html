@@ -3,23 +3,72 @@
 
 <head>
     <title></title>
-    <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <!-- Tamim Added these links -->
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/slide-social-buttons.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet">
 </head>
 
 <body>
-    <i onclick='dumb(this)' class='fa fa-heart-o'></i>
-    <i onclick="myFunction(this)" class="fa fa-thumbs-up"></i>
-    <script type="text/javascript">
-    function dumb(x) {
-        x.classList.toggle("fa-heart");
-        x.classList.toggle("fa-heart-o")
-    }
-    function myFunction(x) {
-    x.classList.toggle("fa-thumbs-down");
-}
-    </script>
-    <script src="https://use.fontawesome.com/ef62b51349.js"></script>
+<!--  Tamim added this section below -->
+                <section class="social-buttons">
+                    <!-- Like -->
+                    <div class="slide-social">
+                        <div class="ss-button">
+                            <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fgithub.com%2TamimShohid%2Fslide-social-buttons&amp;send=false&amp;layout=button_count&amp;width=90&amp;show_faces=false&amp;font&amp;colorscheme=light&amp;action=like&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:90px; height:21px;" allowTransparency="true"></iframe>
+                        </div>
+                        <div class="facebook-bg ss-icon">
+                            <i class="fa fa-facebook"></i>
+                        </div>
+                        <div class="facebook-bg ss-slide">Like</div>
+                    </div>
+                    <!-- +1 -->
+                    <div class="slide-social">
+                        <div class="ss-button">
+                            <div class="g-plusone" data-size="medium"></div>
+                        </div>
+                        <div class="google-plus-bg ss-icon">
+                            <i class="fa fa-google-plus"></i>
+                        </div>
+                        <div class="google-plus-bg ss-slide">+1</div>
+                    </div>
+                    <!-- Tweet -->
+                    <div class="slide-social">
+                        <div class="ss-button">
+                            <a href="https://twitter.com/share" class="twitter-share-button" data-url="https://github.com/christophery/slide-social-buttons" data-text="Slide Social Buttons are a fun way to display your social media buttons">Tweet</a>
+                        </div>
+                        <div class="twitter-bg ss-icon">
+                            <i class="fa fa-twitter"></i>
+                        </div>
+                        <div class="twitter-bg ss-slide">tweet</div>
+                    </div>
+                    <!-- ShareIn -->
+                    <div class="slide-social">
+                        <div class="ss-button">
+                            <script src="https://platform.linkedin.com/in.js" type="text/javascript">
+                            lang: en_US
+                            </script>
+                            <script type="IN/Share" data-url="http://christopheryee.ca/slide-social-buttons/"></script>
+                        </div>
+                        <div class="linkedin-bg ss-icon">
+                            <i class="fa fa-linkedin"></i>
+                        </div>
+                        <div class="linkedin-bg ss-slide">share</div>
+                    </div>
+            </div>
+            </section>
+            <!-- Tamim added upto here -->
+        <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js"></script>
+        <!--<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmNX29rk_tbFqoDWIyYCg5TglI2OP8Xnk&callback=initMap">
+        </script>-->
+        <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="https://use.fontawesome.com/ef62b51349.js"></script>
+        <script type="text/javascript" src="../javascript/getlost.js"></script>
 </body>
 
 </html>
